@@ -45,17 +45,63 @@ class _LoginPageState extends State<LoginPage> {
             Form(
               child: Column(
                 children: [
-                  TextFormField(
-                    decoration: const InputDecoration(
-                      label: Text('Email'),
+                  Container(
+                    padding: const EdgeInsets.all(8),
+                    width: MediaQuery.of(context).size.width * 0.9,
+                    decoration: const BoxDecoration(
+                        border:
+                            Border(bottom: BorderSide(color: Colors.blueGrey))),
+                    child: TextFormField(
+                      decoration: const InputDecoration(
+                        label: Text('Email'),
+                        focusedBorder: InputBorder.none,
+                        border: InputBorder.none,
+                        errorBorder: InputBorder.none,
+                        enabledBorder: InputBorder.none,
+                      ),
                     ),
                   ),
-                  TextFormField(
-                    decoration: const InputDecoration(
-                      label: Text('Senha'),
+                  Container(
+                    padding: const EdgeInsets.all(8),
+                    width: MediaQuery.of(context).size.width * 0.9,
+                    decoration: const BoxDecoration(
+                        border:
+                            Border(bottom: BorderSide(color: Colors.blueGrey))),
+                    child: TextFormField(
+                      decoration: const InputDecoration(
+                        label: Text('Senha'),
+                        focusedBorder: InputBorder.none,
+                        border: InputBorder.none,
+                        errorBorder: InputBorder.none,
+                        enabledBorder: InputBorder.none,
+                      ),
                     ),
                   ),
-                  ElevatedButton(onPressed: (){}, child: const Text('Entrar'))
+                  Padding(
+                      padding: const EdgeInsets.only(top: 15),
+                      child: ElevatedButton(
+                        onPressed: (){},
+                        style: ElevatedButton.styleFrom(
+                          backgroundColor: Colors.blueGrey,
+                          shape: RoundedRectangleBorder(
+                            borderRadius: BorderRadius.circular(30),
+                          ),
+                          padding: const EdgeInsets.symmetric(
+                            vertical: 8,
+                            horizontal: 30,
+                          ),
+                        ),child: SizedBox(
+                    height: 35,
+                    width: MediaQuery.of(context).size.width * 0.7,
+                    child: const Center(
+                      child: Text(
+                        'Entrar' ,
+                        style: TextStyle(
+                            color: Colors.white, fontSize: 17),
+                      ),
+                    ),
+                  ),
+                      ))
                 ],
               ),
             )
