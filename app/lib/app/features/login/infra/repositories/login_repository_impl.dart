@@ -16,7 +16,7 @@ class LoginRepositoryImpl implements LoginRepository {
       final request = await client.request(
         url: url,
         method: 'post',
-        body: {},
+        body: LoginEmailParams.fromDomain(credenciais).toJson(),
       );
       return request;
     } on HttpError catch (error) {
@@ -25,4 +25,22 @@ class LoginRepositoryImpl implements LoginRepository {
           : DomainError.unexpected;
     }
   }
+}
+
+class LoginEmailParams {
+  final String email;
+  final String password;
+
+  LoginEmailParams({required this.email, required this.password});
+
+  factory LoginEmailParams.fromDomain(LoginComEmailCredenciais credenciais) =>
+      LoginEmailParams(
+        email: credenciais.email,
+        password: credenciais.password,
+      );
+      
+  Map toJson() => {
+        'email': email,
+        'password': password,
+      };
 }
