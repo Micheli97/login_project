@@ -1,3 +1,5 @@
+import '../usecases/usecases.dart';
+
 abstract class LoginRepository {
-  Future<void> loginEmail ({String email, String password});
+  Future<void> loginEmail (LoginComEmailCredenciais credenciais);
 }
