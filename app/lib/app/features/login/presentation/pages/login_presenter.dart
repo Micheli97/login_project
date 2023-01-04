@@ -1,6 +1,6 @@
 import 'package:flutter/foundation.dart';
 
-abstract class LoginPresenter implements Listenable {
+abstract class LoginPresenter {
   Stream<String?> get emailErrorStream;
   Stream<String?> get passwordErrorStream;
   Stream<String?> get mainErrorStream;
