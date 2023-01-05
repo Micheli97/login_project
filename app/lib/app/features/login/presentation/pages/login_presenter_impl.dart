@@ -26,6 +26,8 @@ class LoginPresenterImpl implements LoginPresenter {
 
   LoginPresenterImpl({required this.validacao});
 
+  void _update() => _controller.add(_state);
+
   @override
   Future<void> autenticacao() {
     throw UnimplementedError();
@@ -39,7 +41,13 @@ class LoginPresenterImpl implements LoginPresenter {
       _controller.stream.map((state) => state.emailError).distinct();
 
   @override
-  void emailValidar(String email) {}
+  void emailValidar(String email) {
+    _state._email = email;
+    _state.emailError = validacao.validar(
+      campo: 'email',
+      valor: email,
+    );
+  }
 
   @override
   Stream<bool> get isFormValidStream =>
