@@ -54,21 +54,19 @@ class _LoginPageState extends State<LoginPage> {
                         border:
                             Border(bottom: BorderSide(color: Colors.blueGrey))),
                     child: StreamBuilder<String?>(
-                      stream: widget.presenter.emailErrorStream,
-                      builder: (context, snapshot) {
-                        return TextFormField(
-                          decoration: InputDecoration(
-                            label: const Text('Email'),
-                            focusedBorder: InputBorder.none,
-                            border: InputBorder.none,
-                            errorBorder: InputBorder.none,
-                            enabledBorder: InputBorder.none,
-                            errorText: snapshot.data
-                          ),
-                          onChanged: widget.presenter.emailValidar,
-                        );
-                      }
-                    ),
+                        stream: widget.presenter.emailErrorStream,
+                        builder: (context, snapshot) {
+                          return TextFormField(
+                            decoration: InputDecoration(
+                                label: const Text('Email'),
+                                focusedBorder: InputBorder.none,
+                                border: InputBorder.none,
+                                errorBorder: InputBorder.none,
+                                enabledBorder: InputBorder.none,
+                                errorText: snapshot.data),
+                            onChanged: widget.presenter.emailValidar,
+                          );
+                        }),
                   ),
                   Container(
                     padding: const EdgeInsets.all(8),
@@ -76,41 +74,54 @@ class _LoginPageState extends State<LoginPage> {
                     decoration: const BoxDecoration(
                         border:
                             Border(bottom: BorderSide(color: Colors.blueGrey))),
-                    child: TextFormField(
-                      decoration: const InputDecoration(
-                        label: Text('Senha'),
-                        focusedBorder: InputBorder.none,
-                        border: InputBorder.none,
-                        errorBorder: InputBorder.none,
-                        enabledBorder: InputBorder.none,
-                      ),
-                    ),
+                    child: StreamBuilder<String?>(
+                        stream: widget.presenter.passwordErrorStream,
+                        builder: (context, snapshot) {
+                          return TextFormField(
+                            decoration: InputDecoration(
+                              label: const Text('Senha'),
+                              focusedBorder: InputBorder.none,
+                              border: InputBorder.none,
+                              errorBorder: InputBorder.none,
+                              enabledBorder: InputBorder.none,
+                              errorText: snapshot.data,
+                            ),
+                            onChanged: widget.presenter.senhaValidar,
+                          );
+                        }),
                   ),
                   Padding(
                       padding: const EdgeInsets.only(top: 15),
-                      child: ElevatedButton(
-                        onPressed: (){},
-                        style: ElevatedButton.styleFrom(
-                          backgroundColor: Colors.blueGrey,
-                          shape: RoundedRectangleBorder(
-                            borderRadius: BorderRadius.circular(30),
-                          ),
-                          padding: const EdgeInsets.symmetric(
-                            vertical: 8,
-                            horizontal: 30,
-                          ),
-                        ),child: SizedBox(
-                    height: 35,
-                    width: MediaQuery.of(context).size.width * 0.7,
-                    child: const Center(
-                      child: Text(
-                        'Entrar' ,
-                        style: TextStyle(
-                            color: Colors.white, fontSize: 17),
-                      ),
-                    ),
-                  ),
-                      ))
+                      child: StreamBuilder<bool>(
+                          stream: null,
+                          builder: (context, snapshot) {
+                            return ElevatedButton(
+                              onPressed: snapshot.data == true
+                                  ? widget.presenter.loginEmail
+                                  : null,
+                              style: ElevatedButton.styleFrom(
+                                backgroundColor: Colors.blueGrey,
+                                shape: RoundedRectangleBorder(
+                                  borderRadius: BorderRadius.circular(30),
+                                ),
+                                padding: const EdgeInsets.symmetric(
+                                  vertical: 8,
+                                  horizontal: 30,
+                                ),
+                              ),
+                              child: SizedBox(
+                                height: 35,
+                                width: MediaQuery.of(context).size.width * 0.7,
+                                child: const Center(
+                                  child: Text(
+                                    'Entrar',
+                                    style: TextStyle(
+                                        color: Colors.white, fontSize: 17),
+                                  ),
+                                ),
+                              ),
+                            );
+                          }))
                 ],
               ),
             )
