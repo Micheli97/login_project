@@ -28,7 +28,7 @@ HttpClient httpExternal() {
 LoginRepository loginEmail() {
   return LoginRepositoryImpl(
       client: httpExternal(),
-      url: firebaseUrl(''));
+      url: firebaseUrl(const String.fromEnvironment('API_KEY')));
 }
 
 List<ValidacaoCampoRepository> composicaoLogin() {

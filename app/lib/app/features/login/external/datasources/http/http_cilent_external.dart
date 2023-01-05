@@ -31,12 +31,10 @@ class HttpClientExternal implements HttpClient {
     Future<Response>? futureResponse;
 
     try {
-      if (method == 'post') {
         futureResponse = client.post(Uri.parse(url!), headers: cabecalho, body: jsonBody);
-      }
-      if (futureResponse != null) {
+      
         response = await futureResponse.timeout(const Duration(seconds: 20));
-      }
+      
     } catch (e) {
       throw HttpError.serverError;
     }

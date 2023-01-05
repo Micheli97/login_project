@@ -71,7 +71,7 @@ class LoginPresenterImpl implements LoginPresenter {
 
   @override
   void senhaValidar(String password) {
-    _state._email = password;
+    _state._password = password;
     _state.emailError = validacao.validar(
       campo: 'password',
       valor: password,

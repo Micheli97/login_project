@@ -19,13 +19,7 @@ class _LoginPageState extends State<LoginPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: Builder(builder: (context) {
-        widget.presenter.isLoadingStream.listen((event) {
-          if (event) {
-            const CircularProgressIndicator();
-          }
-        });
-        return SingleChildScrollView(
+      body:  SingleChildScrollView(
           child: Column(
             children: [
               Stack(
@@ -108,9 +102,7 @@ class _LoginPageState extends State<LoginPage> {
                             stream: widget.presenter.isFormValidStream,
                             builder: (context, snapshot) {
                               return ElevatedButton(
-                                onPressed: snapshot.data == true
-                                    ? widget.presenter.loginEmail
-                                    : null,
+                                onPressed: widget.presenter.loginEmail,
                                 style: ElevatedButton.styleFrom(
                                   backgroundColor: Colors.blueGrey,
                                   shape: RoundedRectangleBorder(
@@ -140,8 +132,7 @@ class _LoginPageState extends State<LoginPage> {
               )
             ],
           ),
-        );
-      }),
+        )
     );
   }
 }
