@@ -1,7 +1,7 @@
-import '../../domain/usecases/usecases.dart';
+import '../../domain/repositories/repositories.dart';
 import 'package:equatable/equatable.dart';
 
-class ValidacaoCampoImpl extends Equatable implements ValidacaoCampoUsecase {
+class ValidacaoCampoImpl extends Equatable implements ValidacaoCampoRepository {
   final String campo;
 
   @override
