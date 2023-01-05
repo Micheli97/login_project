@@ -1,7 +1,9 @@
+import 'package:app/app/features/login/presentation/pages/login_presenter.dart';
 import 'package:flutter/material.dart';
 
 class LoginPage extends StatefulWidget {
-  const LoginPage({super.key});
+  final LoginPresenter presenter;
+  const LoginPage({required this.presenter, super.key});
 
   @override
   State<LoginPage> createState() => _LoginPageState();
@@ -51,14 +53,21 @@ class _LoginPageState extends State<LoginPage> {
                     decoration: const BoxDecoration(
                         border:
                             Border(bottom: BorderSide(color: Colors.blueGrey))),
-                    child: TextFormField(
-                      decoration: const InputDecoration(
-                        label: Text('Email'),
-                        focusedBorder: InputBorder.none,
-                        border: InputBorder.none,
-                        errorBorder: InputBorder.none,
-                        enabledBorder: InputBorder.none,
-                      ),
+                    child: StreamBuilder<String?>(
+                      stream: widget.presenter.emailErrorStream,
+                      builder: (context, snapshot) {
+                        return TextFormField(
+                          decoration: InputDecoration(
+                            label: const Text('Email'),
+                            focusedBorder: InputBorder.none,
+                            border: InputBorder.none,
+                            errorBorder: InputBorder.none,
+                            enabledBorder: InputBorder.none,
+                            errorText: snapshot.data
+                          ),
+                          onChanged: widget.presenter.emailValidar,
+                        );
+                      }
                     ),
                   ),
                   Container(
