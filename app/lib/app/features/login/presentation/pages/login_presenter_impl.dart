@@ -47,6 +47,7 @@ class LoginPresenterImpl implements LoginPresenter {
       campo: 'email',
       valor: email,
     );
+    _update();
   }
 
   @override
@@ -66,5 +67,12 @@ class LoginPresenterImpl implements LoginPresenter {
       _controller.stream.map((state) => state.passwordError).distinct();
 
   @override
-  void senhaValidar(String password) {}
+  void senhaValidar(String password) {
+    _state._email = password;
+    _state.emailError = validacao.validar(
+      campo: 'password',
+      valor: password,
+    );
+    _update();
+  }
 }
