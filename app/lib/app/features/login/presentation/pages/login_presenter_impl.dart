@@ -1,5 +1,6 @@
 import 'dart:async';
 
+import 'package:app/app/features/login/domain/usecases/login_com_email_usecase.dart';
 import 'package:app/app/features/login/domain/usecases/validacao_usecase.dart';
 import 'package:app/app/features/login/presentation/pages/login_presenter.dart';
 
@@ -19,17 +20,21 @@ class LoginState {
 
 class LoginPresenterImpl implements LoginPresenter {
   final Validacao validacao;
+  final LoginComEmail loginComEmail;
 
   final _controller = StreamController<LoginState>.broadcast();
 
   var _state = LoginState();
 
-  LoginPresenterImpl({required this.validacao});
+  LoginPresenterImpl({
+    required this.validacao,
+    required this.loginComEmail,
+  });
 
   void _update() => _controller.add(_state);
 
   @override
-  Future<void> autenticacao() {
+  Future<void> loginEmail() {
     throw UnimplementedError();
   }
 

@@ -1,5 +1,3 @@
-import 'package:flutter/foundation.dart';
-
 abstract class LoginPresenter {
   Stream<String?> get emailErrorStream;
   Stream<String?> get passwordErrorStream;
@@ -9,6 +7,6 @@ abstract class LoginPresenter {
 
   void emailValidar(String email);
   void senhaValidar(String password);
-  Future<void> autenticacao();
+  Future<void> loginEmail();
   void dispose();
 }
