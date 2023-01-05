@@ -35,7 +35,9 @@ class LoginPresenterImpl implements LoginPresenter {
   void _update() => _controller.add(_state);
 
   @override
-  void dispose() {}
+  void dispose() {
+    _controller.close();
+  }
 
   @override
   Stream<String?> get emailErrorStream =>
