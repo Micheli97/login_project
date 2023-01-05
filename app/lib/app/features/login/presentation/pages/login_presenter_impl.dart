@@ -1,5 +1,6 @@
 import 'dart:async';
 
+import 'package:app/app/features/login/domain/repositories/login_repository.dart';
 import 'package:app/app/features/login/domain/usecases/login_com_email_usecase.dart';
 import 'package:app/app/features/login/domain/usecases/validacao_usecase.dart';
 import 'package:app/app/features/login/presentation/pages/login_presenter.dart';
@@ -20,7 +21,7 @@ class LoginState {
 
 class LoginPresenterImpl implements LoginPresenter {
   final Validacao validacao;
-  final LoginComEmail loginComEmail;
+  final LoginRepository loginComEmail;
 
   final _controller = StreamController<LoginState>.broadcast();
 
@@ -78,7 +79,7 @@ class LoginPresenterImpl implements LoginPresenter {
 
   @override
   Future<void> loginEmail() async {
-    await loginComEmail.autenticacao(LoginComEmailCredenciais(
+    await loginComEmail.loginEmail(LoginComEmailCredenciais(
         email: _state._email!, senha: _state._password!));
   }
 }
