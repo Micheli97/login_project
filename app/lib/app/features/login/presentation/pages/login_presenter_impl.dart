@@ -18,7 +18,6 @@ class LoginState {
 }
 
 class LoginPresenterImpl implements LoginPresenter {
-
   final Validacao validacao;
 
   final _controller = StreamController<LoginState>.broadcast();
@@ -33,30 +32,31 @@ class LoginPresenterImpl implements LoginPresenter {
   }
 
   @override
-  void dispose() {
-  }
+  void dispose() {}
 
   @override
-  Stream<String?> get emailErrorStream => throw UnimplementedError();
+  Stream<String?> get emailErrorStream =>
+      _controller.stream.map((state) => state.emailError).distinct();
 
   @override
-  void emailValidar(String email) {
-  }
+  void emailValidar(String email) {}
 
   @override
-  Stream<bool> get isFormValidStream => throw UnimplementedError();
+  Stream<bool> get isFormValidStream =>
+      _controller.stream.map((state) => state.isFormValid).distinct();
 
   @override
-  Stream<bool> get isLoadingStream => throw UnimplementedError();
+  Stream<bool> get isLoadingStream =>
+      _controller.stream.map((state) => state.isLoading).distinct();
 
   @override
-  Stream<String?> get mainErrorStream => throw UnimplementedError();
+  Stream<String?> get mainErrorStream =>
+      _controller.stream.map((state) => state.mainError).distinct();
 
   @override
-  Stream<String?> get passwordErrorStream => throw UnimplementedError();
+  Stream<String?> get passwordErrorStream =>
+      _controller.stream.map((state) => state.passwordError).distinct();
 
   @override
-  void senhaValidar(String password) {
-  }
-
+  void senhaValidar(String password) {}
 }
