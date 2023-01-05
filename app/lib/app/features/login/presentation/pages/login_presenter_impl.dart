@@ -1,3 +1,6 @@
+import 'dart:async';
+
+import 'package:app/app/features/login/domain/usecases/validacao_usecase.dart';
 import 'package:app/app/features/login/presentation/pages/login_presenter.dart';
 
 class LoginState {
@@ -15,6 +18,14 @@ class LoginState {
 }
 
 class LoginPresenterImpl implements LoginPresenter {
+
+  final Validacao validacao;
+
+  final _controller = StreamController<LoginState>.broadcast();
+
+  var _state = LoginState();
+
+  LoginPresenterImpl({required this.validacao});
 
   @override
   Future<void> autenticacao() {
