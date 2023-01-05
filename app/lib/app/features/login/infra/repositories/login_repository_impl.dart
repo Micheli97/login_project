@@ -29,18 +29,18 @@ class LoginRepositoryImpl implements LoginRepository {
 
 class LoginEmailParams {
   final String email;
-  final String password;
+  final String senha;
 
-  LoginEmailParams({required this.email, required this.password});
+  LoginEmailParams({required this.email, required this.senha});
 
   factory LoginEmailParams.fromDomain(LoginComEmailCredenciais credenciais) =>
       LoginEmailParams(
         email: credenciais.email,
-        password: credenciais.password,
+        senha: credenciais.senha,
       );
       
   Map toJson() => {
         'email': email,
-        'password': password,
+        'senha': senha,
       };
 }

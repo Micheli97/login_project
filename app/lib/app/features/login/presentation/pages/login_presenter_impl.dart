@@ -34,11 +34,6 @@ class LoginPresenterImpl implements LoginPresenter {
   void _update() => _controller.add(_state);
 
   @override
-  Future<void> loginEmail() {
-    throw UnimplementedError();
-  }
-
-  @override
   void dispose() {}
 
   @override
@@ -79,5 +74,11 @@ class LoginPresenterImpl implements LoginPresenter {
       valor: password,
     );
     _update();
+  }
+
+  @override
+  Future<void> loginEmail() async {
+    await loginComEmail.autenticacao(LoginComEmailCredenciais(
+        email: _state._email!, senha: _state._password!));
   }
 }

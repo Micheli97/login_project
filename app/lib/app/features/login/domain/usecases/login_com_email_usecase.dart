@@ -6,15 +6,19 @@ abstract class LoginComEmail {
   Future<void> autenticacao(LoginCredencialEntity credencial);
 }
 
-class LoginComEmailCredenciais extends Equatable {
+class LoginComEmailCredenciais extends Equatable implements LoginCredencialEntity {
+  @override
   final String email;
-  final String password;
+  
+  @override
+  final String senha;
 
   @override
-  List get props => [email, password];
+  List get props => [email, senha];
 
   const LoginComEmailCredenciais({
     required this.email,
-    required this.password,
+    required this.senha,
   });
+  
 }
