@@ -13,7 +13,7 @@ class App extends StatelessWidget {
     return MaterialApp(
       home: loginPage(),
       routes: {
-        '/success': (ctx)=> const Scaffold(body: Text('DEU CERTO'),)
+        '/success': (ctx)=> const Scaffold(body: Center(child: Text('Voce está logadooo!!!')),)
       },
     ); 
   }

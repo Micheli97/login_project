@@ -94,6 +94,7 @@ class LoginPresenterImpl implements LoginPresenter {
       await loginComEmail.loginEmail(LoginComEmailCredenciais(
           email: _state._email!, senha: _state._password!));
       _state.navigar = '/success';
+      _update();
     } on DomainError catch (e) {
       _state.mainError = e.descricaoError;
       _state.isLoading = false;
