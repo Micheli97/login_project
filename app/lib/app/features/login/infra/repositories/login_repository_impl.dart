@@ -41,6 +41,7 @@ class LoginEmailParams {
       
   Map toJson() => {
         'email': email,
-        'senha': senha,
+        'password': senha,
+        'returnSecureToken': true
       };
 }

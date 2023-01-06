@@ -5,6 +5,8 @@ import 'package:app/app/features/login/domain/usecases/login_com_email_usecase.d
 import 'package:app/app/features/login/domain/usecases/validacao_usecase.dart';
 import 'package:app/app/features/login/presentation/pages/login_presenter.dart';
 
+import '../../domain/errors/errors.dart';
+
 class LoginState {
   String? _email;
   String? _password;
@@ -81,7 +83,13 @@ class LoginPresenterImpl implements LoginPresenter {
 
   @override
   Future<void> loginEmail() async {
-    await loginComEmail.loginEmail(LoginComEmailCredenciais(
-        email: _state._email!, senha: _state._password!));
+    try {
+      _state.isLoading = true;
+      await loginComEmail.loginEmail(LoginComEmailCredenciais(
+          email: _state._email!, senha: _state._password!));
+    } on DomainError catch (e) {
+      _state.mainError = e.descricaoError;
+      _state.isLoading = false;
+    }
   }
 }
