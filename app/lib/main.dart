@@ -12,6 +12,9 @@ class App extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       home: loginPage(),
+      routes: {
+        '/success': (ctx)=> const Scaffold(body: Text('DEU CERTO'),)
+      },
     ); 
   }
 }

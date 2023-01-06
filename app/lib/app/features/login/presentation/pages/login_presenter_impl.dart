@@ -19,6 +19,7 @@ class LoginState {
       _email != null &&
       _password != null;
   bool isLoading = false;
+  String? navigar;
 }
 
 class LoginPresenterImpl implements LoginPresenter {
@@ -72,6 +73,10 @@ class LoginPresenterImpl implements LoginPresenter {
       _controller.stream.map((state) => state.passwordError).distinct();
 
   @override
+  Stream<String?> get navegarStream =>
+      _controller.stream.map((event) => event.navigar).distinct();
+
+  @override
   void senhaValidar(String password) {
     _state._password = password;
     _state.emailError = validacao.validar(
@@ -85,11 +90,14 @@ class LoginPresenterImpl implements LoginPresenter {
   Future<void> loginEmail() async {
     try {
       _state.isLoading = true;
+      _update();
       await loginComEmail.loginEmail(LoginComEmailCredenciais(
           email: _state._email!, senha: _state._password!));
+      _state.navigar = '/success';
     } on DomainError catch (e) {
       _state.mainError = e.descricaoError;
       _state.isLoading = false;
+      _update();
     }
   }
 }

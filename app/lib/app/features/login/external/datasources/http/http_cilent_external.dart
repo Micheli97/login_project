@@ -33,7 +33,7 @@ class HttpClientExternal implements HttpClient {
     try {
         futureResponse = client.post(Uri.parse(url!), headers: cabecalho, body: jsonBody);
       
-        response = await futureResponse.timeout(const Duration(seconds: 20));
+        response = await futureResponse.timeout(const Duration(seconds: 10));
       
     } catch (e) {
       throw HttpError.serverError;

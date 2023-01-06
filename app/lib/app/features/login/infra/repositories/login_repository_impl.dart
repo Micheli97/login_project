@@ -13,15 +13,14 @@ class LoginRepositoryImpl implements LoginRepository {
   @override
   Future<void> loginEmail(LoginComEmailCredenciais credenciais) async {
     try {
-      final request = await client.request(
+      await client.request(
         url: url,
         method: 'post',
         body: LoginEmailParams.fromDomain(credenciais).toJson(),
       );
-      return request;
     } on HttpError catch (error) {
       throw error == HttpError.unauthorized
-          ? DomainError.invalidCredencials
+          ? DomainError.operationNotAllowed
           : DomainError.unexpected;
     }
   }
@@ -38,10 +37,7 @@ class LoginEmailParams {
         email: credenciais.email,
         senha: credenciais.senha,
       );
-      
-  Map toJson() => {
-        'email': email,
-        'password': senha,
-        'returnSecureToken': true
-      };
+
+  Map toJson() =>
+      {'email': email, 'password': senha, 'returnSecureToken': true};
 }
