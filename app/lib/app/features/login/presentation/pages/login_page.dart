@@ -102,7 +102,7 @@ class _LoginPageState extends State<LoginPage> {
                             stream: widget.presenter.isFormValidStream,
                             builder: (context, snapshot) {
                               return ElevatedButton(
-                                onPressed: widget.presenter.loginEmail,
+                                onPressed: snapshot.data == true ? widget.presenter.loginEmail : null,
                                 style: ElevatedButton.styleFrom(
                                   backgroundColor: Colors.blueGrey,
                                   shape: RoundedRectangleBorder(
