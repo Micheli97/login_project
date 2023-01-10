@@ -4,7 +4,7 @@ import '../../domain/errors/domain_error.dart';
 
 import '../../external/datasources/http/http_error.dart';
 
-import '../datasources/http/http_client.dart';
+import '../../../../core/http/http_client.dart';
 
 class LoginRepositoryImpl implements LoginRepository {
   final HttpClient client;
