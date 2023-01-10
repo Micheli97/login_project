@@ -1,3 +1,5 @@
+import 'package:app/app/features/login/infra/models/login_email_model.dart';
+
 import '../../domain/repositories/login_repository.dart';
 import '../../domain/usecases/login_com_email_usecase.dart';
 import '../../domain/errors/domain_error.dart';
@@ -18,7 +20,7 @@ class LoginRepositoryImpl implements LoginRepository {
       await client.request(
         url: url,
         method: 'post',
-        body: LoginEmailParams.fromDomain(credenciais).toJson(),
+        body: LoginEmailModel.fromDomain(credenciais).toJson(),
       );
     } on HttpError catch (error) {
       throw error == HttpError.unauthorized
@@ -26,20 +28,4 @@ class LoginRepositoryImpl implements LoginRepository {
           : DomainError.unexpected;
     }
   }
-}
-
-class LoginEmailParams {
-  final String email;
-  final String senha;
-
-  LoginEmailParams({required this.email, required this.senha});
-
-  factory LoginEmailParams.fromDomain(LoginComEmailCredenciais credenciais) =>
-      LoginEmailParams(
-        email: credenciais.email,
-        senha: credenciais.senha,
-      );
-
-  Map toJson() =>
-      {'email': email, 'password': senha, 'returnSecureToken': true};
 }
