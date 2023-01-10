@@ -12,7 +12,7 @@ class HttpClientExternal implements HttpClient {
 
   @override
   Future<Map<dynamic, dynamic>> request({
-    String? url,
+    required String url,
     String? method,
     Map? headers,
     Map? body,
@@ -29,10 +29,10 @@ class HttpClientExternal implements HttpClient {
 
     var response =  Response('', 500);
 
-    Future<Response>? futureResponse;
+    Future<Response> futureResponse;
 
     try {
-        futureResponse = client.post(Uri.parse(url!), headers: cabecalho, body: jsonBody);
+        futureResponse = client.post(Uri.parse(url), headers: cabecalho, body: jsonBody);
       
         response = await futureResponse.timeout(const Duration(seconds: 10));
       
@@ -44,8 +44,8 @@ class HttpClientExternal implements HttpClient {
 
   dynamic serverResponses(Response response) {
     switch (response.statusCode) {
-      case 200: return response.body.isEmpty ? null : jsonDecode(response.body);
-      case 204: return null;
+      case 200: return jsonDecode(response.body);
+      case 204: return 'Erro Inesperado!';
       case 400: throw HttpError.badRequest;
       case 401: throw HttpError.unauthorized;
       case 403: throw HttpError.forbiden;
