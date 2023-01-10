@@ -1,5 +1,6 @@
-import 'package:app/config_login.dart';
 import 'package:flutter/material.dart';
+
+import 'package:app/app/features/login/config_login.dart';
 
 void main(){
   runApp(const App());

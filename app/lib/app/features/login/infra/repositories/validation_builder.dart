@@ -1,4 +1,4 @@
-import '../../domain/repositories/repositories.dart';
+import '../../domain/repositories/validacao_campo_repository.dart';
 
 import 'email_validacao_repository_impl.dart';
 import 'validacao_campo_impl.dart';

@@ -1,6 +1,6 @@
 import 'package:equatable/equatable.dart';
 
-import '../entities/entities.dart';
+import '../entities/login_credencial_entity.dart';
 
 abstract class LoginComEmail {
   Future<void> autenticacao(LoginCredencialEntity credencial);

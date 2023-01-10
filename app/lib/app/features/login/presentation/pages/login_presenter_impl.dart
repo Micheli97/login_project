@@ -1,11 +1,11 @@
 import 'dart:async';
 
-import 'package:app/app/features/login/domain/repositories/login_repository.dart';
-import 'package:app/app/features/login/domain/usecases/login_com_email_usecase.dart';
-import 'package:app/app/features/login/domain/usecases/validacao_usecase.dart';
-import 'package:app/app/features/login/presentation/pages/login_presenter.dart';
+import '../../domain/repositories/login_repository.dart';
+import '../../domain/usecases/login_com_email_usecase.dart';
+import '../../domain/usecases/validacao_usecase.dart';
+import '../../presentation/pages/login_presenter.dart';
 
-import '../../domain/errors/errors.dart';
+import '../../domain/errors/domain_error.dart';
 
 class LoginState {
   String? _email;

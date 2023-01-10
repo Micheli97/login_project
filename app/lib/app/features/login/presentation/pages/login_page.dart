@@ -1,7 +1,7 @@
 import 'package:app/app/features/login/presentation/pages/login_presenter.dart';
 import 'package:flutter/material.dart';
 
-import 'components/components.dart';
+import 'components/cabecalho_login.dart';
 
 class LoginPage extends StatefulWidget {
   final LoginPresenter presenter;

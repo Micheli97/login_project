@@ -1,5 +1,6 @@
-import '../../domain/repositories/repositories.dart';
 import 'package:equatable/equatable.dart';
+
+import '../../domain/repositories/validacao_campo_repository.dart';
 
 class ValidacaoCampoImpl extends Equatable implements ValidacaoCampoRepository {
   final String campo;

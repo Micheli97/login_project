@@ -1,8 +1,10 @@
-import 'package:app/app/features/login/domain/repositories/login_repository.dart';
-import 'package:app/app/features/login/domain/usecases/login_com_email_usecase.dart';
+import '../../domain/repositories/login_repository.dart';
+import '../../domain/usecases/login_com_email_usecase.dart';
+import '../../domain/errors/domain_error.dart';
 
-import '../../domain/errors/errors.dart';
-import '../datasources/http/http.dart';
+import '../../external/datasources/http/http_error.dart';
+
+import '../datasources/http/http_client.dart';
 
 class LoginRepositoryImpl implements LoginRepository {
   final HttpClient client;

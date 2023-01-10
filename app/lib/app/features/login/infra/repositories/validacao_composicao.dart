@@ -1,5 +1,5 @@
-import '../../domain/repositories/repositories.dart';
-import '../../domain/usecases/usecases.dart';
+import '../../domain/repositories/validacao_campo_repository.dart';
+import '../../domain/usecases/validacao_usecase.dart';
 
 class ValidacaoComposicao implements Validacao {
   final List<ValidacaoCampoRepository> validacoes;

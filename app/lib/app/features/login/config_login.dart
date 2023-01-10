@@ -1,17 +1,20 @@
 import 'package:http/http.dart';
 
-import 'package:app/app/features/login/presentation/pages/login_page.dart';
+import './domain/repositories/login_repository.dart';
+import './domain/repositories/validacao_campo_repository.dart';
+import './domain/usecases/validacao_usecase.dart';
 
-import 'package:app/app/features/login/domain/usecases/usecases.dart';
-import 'package:app/app/features/login/domain/repositories/repositories.dart';
+import './presentation/pages/login_page.dart';
 
-import 'package:app/app/features/login/presentation/pages/login_presenter.dart';
-import 'package:app/app/features/login/presentation/pages/login_presenter_impl.dart';
+import './presentation/pages/login_presenter.dart';
+import './presentation/pages/login_presenter_impl.dart';
 
-import 'package:app/app/features/login/infra/datasources/http/http_client.dart';
-import 'package:app/app/features/login/infra/repositories/repositories.dart';
+import './infra/repositories/login_repository_impl.dart';
+import './infra/repositories/validacao_composicao.dart';
+import './infra/repositories/validation_builder.dart';
+import './infra/datasources/http/http_client.dart';
 
-import 'package:app/app/features/login/external/datasources/http/http.dart';
+import 'package:app/app/features/login/external/datasources/http/http_cilent_external.dart';
 
 LoginPage loginPage() {
   return LoginPage(presenter: criarLoginPresenter());
