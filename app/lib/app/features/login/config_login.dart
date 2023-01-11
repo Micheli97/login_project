@@ -29,9 +29,12 @@ HttpClient httpExternal() {
 }
 
 LoginRepository loginEmail() {
+  final cabecalho = {'content-type': 'application/json'};
   return LoginRepositoryImpl(
-      client: httpExternal(),
-      url: firebaseUrl(const String.fromEnvironment('API_KEY')));
+    client: httpExternal(),
+    cabecalho: cabecalho,
+    url: firebaseUrl(const String.fromEnvironment('API_KEY')),
+  );
 }
 
 List<ValidacaoCampoRepository> composicaoLogin() {

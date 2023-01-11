@@ -11,8 +11,10 @@ import '../../../../core/http/http_client.dart';
 class LoginRepositoryImpl implements LoginRepository {
   final HttpClient client;
   final String url;
+  final Map<String, String> cabecalho;
 
-  LoginRepositoryImpl({required this.client, required this.url});
+  LoginRepositoryImpl(
+      {required this.client, required this.url, required this.cabecalho});
 
   @override
   Future<void> loginEmail(LoginComEmailCredenciais credenciais) async {
@@ -20,6 +22,7 @@ class LoginRepositoryImpl implements LoginRepository {
       await client.request(
         url: url,
         method: 'post',
+        headers: cabecalho,
         body: LoginEmailModel.fromDomain(credenciais).toJson(),
       );
     } on HttpError catch (error) {

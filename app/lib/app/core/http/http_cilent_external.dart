@@ -15,16 +15,9 @@ class HttpClientExternal implements HttpClient {
   Future<Map<dynamic, dynamic>> request({
     required String url,
     required String method,
-    Map? headers,
+    required Map<String, String> headers,
     Map? body,
   }) async {
-    final cabecalho = headers?.cast<String, String>() ?? {}
-      ..addAll(
-        {
-          'content-type': 'application/json',
-          'accept': 'application/json',
-        },
-      );
 
     final jsonBody = jsonEncode(body);
 
@@ -33,7 +26,7 @@ class HttpClientExternal implements HttpClient {
     Future<Response> futureResponse;
 
     try {
-        futureResponse = client.post(Uri.parse(url), headers: cabecalho, body: jsonBody);
+        futureResponse = client.post(Uri.parse(url), headers: headers, body: jsonBody);
       
         response = await futureResponse.timeout(const Duration(seconds: 10));
       
