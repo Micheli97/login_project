@@ -3,6 +3,7 @@ import 'package:equatable/equatable.dart';
 import '../../domain/repositories/validacao_campo_repository.dart';
 
 class ValidacaoCampoImpl extends Equatable implements ValidacaoCampoRepository {
+  @override
   final String campo;
 
   @override
@@ -12,7 +13,7 @@ class ValidacaoCampoImpl extends Equatable implements ValidacaoCampoRepository {
   
   @override
   String? validarCampo(String value) {
-    return value.isNotEmpty == true ? null : 'Campo Obrigatório';
+    return value.isNotEmpty ? null : 'Campo Obrigatório';
   }
   
 }
