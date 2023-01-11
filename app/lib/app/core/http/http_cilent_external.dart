@@ -20,19 +20,19 @@ class HttpClientExternal implements HttpClient {
   }) async {
     final jsonBody = jsonEncode(body);
 
-    var response = Response('', 500);
+    var respostaServidor = Response('', 500);
 
-    Future<Response> futureResponse;
+    Future<Response> respostaFuturaServidor;
 
     try {
       if (method == 'post') {
-        futureResponse = client.post(Uri.parse(url), headers: headers, body: jsonBody);
+        respostaFuturaServidor = client.post(Uri.parse(url), headers: headers, body: jsonBody);
 
-        response = await futureResponse.timeout(const Duration(seconds: 10));
-      } 
+        respostaServidor = await respostaFuturaServidor.timeout(const Duration(seconds: 10));
+      }
     } catch (e) {
       throw HttpError.serverError;
     }
-    return respostasServidor(response);
+    return respostasServidor(respostaServidor);
   }
 }
