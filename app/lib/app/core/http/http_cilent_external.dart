@@ -14,7 +14,7 @@ class HttpClientExternal implements HttpClient {
   @override
   Future<Map<dynamic, dynamic>> request({
     required String url,
-    String? method,
+    required String method,
     Map? headers,
     Map? body,
   }) async {
