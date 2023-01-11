@@ -111,6 +111,7 @@ class _LoginPageState extends State<LoginPage> {
                               errorText: snapshot.data,
                             ),
                             onChanged: widget.presenter.senhaValidar,
+                            obscureText: true,
                           );
                         }),
                   ),
