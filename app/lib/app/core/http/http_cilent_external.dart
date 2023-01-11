@@ -2,8 +2,8 @@ import 'dart:convert';
 
 import 'package:http/http.dart';
 
-import '../../../../../core/http/http_client.dart';
-import 'http_error.dart';
+import 'http_client.dart';
+import '../../features/login/external/datasources/http/http_error.dart';
 
 class HttpClientExternal implements HttpClient {
   final Client client;
