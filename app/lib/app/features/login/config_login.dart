@@ -11,7 +11,7 @@ import './presentation/pages/login_presenter_impl.dart';
 
 import './infra/repositories/login_repository_impl.dart';
 import './infra/repositories/validacao_composicao.dart';
-import './infra/repositories/validation_builder.dart';
+import 'infra/repositories/validacao_construtor.dart';
 import '../../core/http/http_client.dart';
 
 import '../../core/http/http_cilent_external.dart';
