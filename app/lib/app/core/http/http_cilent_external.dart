@@ -18,22 +18,21 @@ class HttpClientExternal implements HttpClient {
     required Map<String, String> headers,
     Map? body,
   }) async {
-
     final jsonBody = jsonEncode(body);
 
-    var response =  Response('', 500);
+    var response = Response('', 500);
 
     Future<Response> futureResponse;
 
     try {
+      if (method == 'post') {
         futureResponse = client.post(Uri.parse(url), headers: headers, body: jsonBody);
-      
+
         response = await futureResponse.timeout(const Duration(seconds: 10));
-      
+      } 
     } catch (e) {
       throw HttpError.serverError;
     }
     return respostasServidor(response);
   }
-
 }
