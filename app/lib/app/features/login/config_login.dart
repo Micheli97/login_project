@@ -30,10 +30,12 @@ HttpClient httpExternal() {
 
 LoginRepository loginEmail() {
   final cabecalho = {'content-type': 'application/json'};
+  const metodoHttp = 'post';
   return LoginRepositoryImpl(
     client: httpExternal(),
     cabecalho: cabecalho,
     url: firebaseUrl(const String.fromEnvironment('API_KEY')),
+    metodoHttp: metodoHttp,
   );
 }
 

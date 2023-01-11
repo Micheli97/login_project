@@ -12,16 +12,17 @@ class LoginRepositoryImpl implements LoginRepository {
   final HttpClient client;
   final String url;
   final Map<String, String> cabecalho;
+  final String metodoHttp;
 
   LoginRepositoryImpl(
-      {required this.client, required this.url, required this.cabecalho});
+      {required this.client, required this.url, required this.cabecalho, required this.metodoHttp});
 
   @override
   Future<void> loginEmail(LoginComEmailCredenciais credenciais) async {
     try {
       await client.request(
         url: url,
-        method: 'post',
+        method: metodoHttp,
         headers: cabecalho,
         body: LoginEmailModel.fromDomain(credenciais).toJson(),
       );
