@@ -14,7 +14,7 @@ import './infra/repositories/validacao_composicao.dart';
 import './infra/repositories/validation_builder.dart';
 import '../../core/http/http_client.dart';
 
-import 'package:app/app/features/login/external/datasources/http/http_cilent_external.dart';
+import './external/datasources/http/http_cilent_external.dart';
 
 LoginPage loginPage() {
   return LoginPage(presenter: criarLoginPresenter());
