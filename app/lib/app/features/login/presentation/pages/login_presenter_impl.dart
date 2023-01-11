@@ -7,35 +7,35 @@ import '../../presentation/pages/login_presenter.dart';
 
 import '../../infra/utils/infra_error.dart';
 
-class LoginState {
+class EstadoLogin {
   String? _email;
-  String? _password;
+  String? _senha;
   String? emailError;
   String? mainError;
-  String? passwordError;
-  bool get isFormValid =>
+  String? senhaError;
+  bool get formularioValido =>
       emailError == null &&
-      passwordError == null &&
+      senhaError == null &&
       _email != null &&
-      _password != null;
-  bool isLoading = false;
-  String? navigar;
+      _senha != null;
+  bool carregando = false;
+  String? navegar;
 }
 
 class LoginPresenterImpl implements LoginPresenter {
   final Validacao validacao;
   final LoginRepository loginComEmail;
 
-  final _controller = StreamController<LoginState>.broadcast();
+  final _controller = StreamController<EstadoLogin>.broadcast();
 
-  var _state = LoginState();
+  var _estadoLogin = EstadoLogin();
 
   LoginPresenterImpl({
     required this.validacao,
     required this.loginComEmail,
   });
 
-  void _update() => _controller.add(_state);
+  void _atualizarStream() => _controller.add(_estadoLogin);
 
   @override
   void dispose() {
@@ -48,57 +48,57 @@ class LoginPresenterImpl implements LoginPresenter {
 
   @override
   void emailValidar(String email) {
-    _state._email = email;
-    _state.emailError = validacao.validar(
+    _estadoLogin._email = email;
+    _estadoLogin.emailError = validacao.validar(
       campo: 'email',
       valor: email,
     );
-    _update();
+    _atualizarStream();
   }
 
   @override
-  Stream<bool> get isFormValidStream =>
-      _controller.stream.map((state) => state.isFormValid).distinct();
+  Stream<bool> get formularioValidoStream =>
+      _controller.stream.map((state) => state.formularioValido).distinct();
 
   @override
-  Stream<bool> get isLoadingStream =>
-      _controller.stream.map((state) => state.isLoading).distinct();
+  Stream<bool> get estaCarregandoStream =>
+      _controller.stream.map((state) => state.carregando).distinct();
 
   @override
   Stream<String?> get mainErrorStream =>
       _controller.stream.map((state) => state.mainError).distinct();
 
   @override
-  Stream<String?> get passwordErrorStream =>
-      _controller.stream.map((state) => state.passwordError).distinct();
+  Stream<String?> get senhaErrorStream =>
+      _controller.stream.map((state) => state.senhaError).distinct();
 
   @override
   Stream<String?> get navegarStream =>
-      _controller.stream.map((event) => event.navigar).distinct();
+      _controller.stream.map((event) => event.navegar).distinct();
 
   @override
   void senhaValidar(String password) {
-    _state._password = password;
-    _state.emailError = validacao.validar(
+    _estadoLogin._senha = password;
+    _estadoLogin.emailError = validacao.validar(
       campo: 'password',
       valor: password,
     );
-    _update();
+    _atualizarStream();
   }
 
   @override
   Future<void> loginEmail() async {
     try {
-      _state.isLoading = true;
-      _update();
+      _estadoLogin.carregando = true;
+      _atualizarStream();
       await loginComEmail.loginEmail(LoginComEmailCredenciais(
-          email: _state._email!, senha: _state._password!));
-      _state.navigar = '/success';
-      _update();
+          email: _estadoLogin._email!, senha: _estadoLogin._senha!));
+      _estadoLogin.navegar = '/success';
+      _atualizarStream();
     } on InfraError catch (e) {
-      _state.mainError = e.descricaoError;
-      _state.isLoading = false;
-      _update();
+      _estadoLogin.mainError = e.descricaoError;
+      _estadoLogin.carregando = false;
+      _atualizarStream();
     }
   }
 }

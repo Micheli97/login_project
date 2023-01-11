@@ -21,7 +21,7 @@ class _LoginPageState extends State<LoginPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(body: Builder(builder: (context) {
-      widget.presenter.isLoadingStream.listen((event) {
+      widget.presenter.estaCarregandoStream.listen((event) {
         if (event) {
           showDialog(
             context: context,
@@ -99,7 +99,7 @@ class _LoginPageState extends State<LoginPage> {
                         border:
                             Border(bottom: BorderSide(color: Colors.blueGrey))),
                     child: StreamBuilder<String?>(
-                        stream: widget.presenter.passwordErrorStream,
+                        stream: widget.presenter.senhaErrorStream,
                         builder: (context, snapshot) {
                           return TextFormField(
                             decoration: InputDecoration(
@@ -117,7 +117,7 @@ class _LoginPageState extends State<LoginPage> {
                   Padding(
                       padding: const EdgeInsets.only(top: 15),
                       child: StreamBuilder<bool>(
-                          stream: widget.presenter.isFormValidStream,
+                          stream: widget.presenter.formularioValidoStream,
                           builder: (context, snapshot) {
                             return ElevatedButton(
                               onPressed: snapshot.data == true

@@ -1,10 +1,10 @@
 abstract class LoginPresenter {
   Stream<String?> get emailErrorStream;
-  Stream<String?> get passwordErrorStream;
+  Stream<String?> get senhaErrorStream;
   Stream<String?> get mainErrorStream;
   Stream<String?> get navegarStream;
-  Stream<bool> get isFormValidStream;
-  Stream<bool> get isLoadingStream;
+  Stream<bool> get formularioValidoStream;
+  Stream<bool> get estaCarregandoStream;
 
   void emailValidar(String email);
   void senhaValidar(String password);
