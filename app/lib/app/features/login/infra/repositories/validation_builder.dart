@@ -3,28 +3,28 @@ import '../../domain/repositories/validacao_campo_repository.dart';
 import 'email_validacao_repository_impl.dart';
 import 'validacao_campo_impl.dart';
 
-class ValidationBuilder {
-  static ValidationBuilder? _instance;
+class ValidacaoConstrutor {
+  static ValidacaoConstrutor? _instance;
   late String nomeCampo;
-  List<ValidacaoCampoRepository> validations = [];
+  List<ValidacaoCampoRepository> validacoes = [];
 
-  ValidationBuilder._();
+  ValidacaoConstrutor._();
 
-  static ValidationBuilder field(String nomeCampo) {
-    _instance = ValidationBuilder._();
+  static ValidacaoConstrutor field(String nomeCampo) {
+    _instance = ValidacaoConstrutor._();
     _instance!.nomeCampo = nomeCampo;
     return _instance!;
   }
 
-  ValidationBuilder required() {
-    validations.add(ValidacaoCampoImpl(nomeCampo));
+  ValidacaoConstrutor requer() {
+    validacoes.add(ValidacaoCampoImpl(nomeCampo));
     return this;
   }
 
-  ValidationBuilder email() {
-    validations.add(EmailValidacaoRepositoryImpl(nomeCampo));
+  ValidacaoConstrutor email() {
+    validacoes.add(EmailValidacaoRepositoryImpl(nomeCampo));
     return this;
   }
 
-  List<ValidacaoCampoRepository> build() => validations;
+  List<ValidacaoCampoRepository> construir() => validacoes;
 }

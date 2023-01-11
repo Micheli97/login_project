@@ -41,8 +41,8 @@ LoginRepository loginEmail() {
 
 List<ValidacaoCampoRepository> composicaoLogin() {
   return [
-    ...ValidationBuilder.field('email').required().email().build(),
-    ...ValidationBuilder.field('password').required().build(),
+    ...ValidacaoConstrutor.field('email').requer().email().construir(),
+    ...ValidacaoConstrutor.field('password').requer().construir(),
   ];
 }
 
