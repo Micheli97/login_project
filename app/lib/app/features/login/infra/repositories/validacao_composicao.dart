@@ -11,7 +11,7 @@ class ValidacaoComposicao implements Validacao {
     String? error;
     for (final validacao in validacoes.where((e) => e.campo == campo)) {
       error = validacao.validarCampo(valor);
-      if (error?.isNotEmpty == true) {
+      if (error!.isNotEmpty) {
         return error;
       }
     }
