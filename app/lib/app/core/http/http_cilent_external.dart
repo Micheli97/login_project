@@ -3,7 +3,8 @@ import 'dart:convert';
 import 'package:http/http.dart';
 
 import 'http_client.dart';
-import '../../features/login/external/datasources/http/http_error.dart';
+import 'utils/http_error.dart';
+import 'utils/respostasServidor.dart';
 
 class HttpClientExternal implements HttpClient {
   final Client client;
@@ -39,19 +40,7 @@ class HttpClientExternal implements HttpClient {
     } catch (e) {
       throw HttpError.serverError;
     }
-    return serverResponses(response);
+    return respostasServidor(response);
   }
 
-  dynamic serverResponses(Response response) {
-    switch (response.statusCode) {
-      case 200: return jsonDecode(response.body);
-      case 204: return 'Erro Inesperado!';
-      case 400: throw HttpError.badRequest;
-      case 401: throw HttpError.unauthorized;
-      case 403: throw HttpError.forbiden;
-      case 404: throw HttpError.notFound;
-      default: throw HttpError.serverError;
-    }
-  }
-  
 }

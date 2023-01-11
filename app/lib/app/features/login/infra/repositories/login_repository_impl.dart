@@ -4,7 +4,7 @@ import '../../domain/repositories/login_repository.dart';
 import '../../domain/usecases/login_com_email_usecase.dart';
 import '../../domain/errors/domain_error.dart';
 
-import '../../external/datasources/http/http_error.dart';
+import '../../../../core/http/utils/http_error.dart';
 
 import '../../../../core/http/http_client.dart';
 
