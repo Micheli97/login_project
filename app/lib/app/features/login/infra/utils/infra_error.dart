@@ -1,4 +1,4 @@
-enum DomainError {
+enum InfraError {
   unexpected,
   invalidCredencials,
   emailExists,
@@ -9,22 +9,22 @@ enum DomainError {
   tooManyAttemptsTryLater,
 }
 
-extension DomainErrorExtension on DomainError {
+extension DomainErrorExtension on InfraError {
   String get descricaoError {
     switch (this) {
-      case DomainError.unexpected:  
+      case InfraError.unexpected:  
         return 'Algo de errado aconteceu';
-      case DomainError.invalidCredencials:
+      case InfraError.invalidCredencials:
         return 'Credenciais Inválidas';
-      case DomainError.emailExists:
+      case InfraError.emailExists:
         return 'E-mail já cadastrado.';
-      case DomainError.operationNotAllowed:
+      case InfraError.operationNotAllowed:
         return 'Operação não permitida!';
-      case DomainError.emailNotFound:
+      case InfraError.emailNotFound:
         return 'E-mail não encontrado.';
-      case DomainError.invalidPassword:
+      case InfraError.invalidPassword:
         return 'Senha inválida';
-      case DomainError.tooManyAttemptsTryLater:
+      case InfraError.tooManyAttemptsTryLater:
         return 'Acesso bloqueado temporariamente. Tente mais tarde';
       default:
         return '';

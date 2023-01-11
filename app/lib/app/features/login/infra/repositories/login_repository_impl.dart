@@ -2,7 +2,7 @@ import 'package:app/app/features/login/infra/models/login_email_model.dart';
 
 import '../../domain/repositories/login_repository.dart';
 import '../../domain/usecases/login_com_email_usecase.dart';
-import '../../domain/errors/domain_error.dart';
+import '../utils/infra_error.dart';
 
 import '../../../../core/http/utils/http_error.dart';
 
@@ -28,8 +28,8 @@ class LoginRepositoryImpl implements LoginRepository {
       );
     } on HttpError catch (error) {
       throw error == HttpError.unauthorized
-          ? DomainError.operationNotAllowed
-          : DomainError.unexpected;
+          ? InfraError.operationNotAllowed
+          : InfraError.unexpected;
     }
   }
 }

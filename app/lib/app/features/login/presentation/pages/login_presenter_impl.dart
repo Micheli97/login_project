@@ -5,7 +5,7 @@ import '../../domain/usecases/login_com_email_usecase.dart';
 import '../../domain/usecases/validacao_usecase.dart';
 import '../../presentation/pages/login_presenter.dart';
 
-import '../../domain/errors/domain_error.dart';
+import '../../infra/utils/infra_error.dart';
 
 class LoginState {
   String? _email;
@@ -95,7 +95,7 @@ class LoginPresenterImpl implements LoginPresenter {
           email: _state._email!, senha: _state._password!));
       _state.navigar = '/success';
       _update();
-    } on DomainError catch (e) {
+    } on InfraError catch (e) {
       _state.mainError = e.descricaoError;
       _state.isLoading = false;
       _update();
